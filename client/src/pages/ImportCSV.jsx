@@ -222,6 +222,45 @@ export default function ImportCSV() {
     window.open('/expenses_export.csv', '_blank');
   };
 
+  const downloadReport = () => {
+    if (!processedRows || processedRows.length === 0) return;
+
+    let reportText = `Import Analysis Report: ${filename}\n`;
+    reportText += `Total Rows: ${summary?.totalRows || 0}\n`;
+    reportText += `Valid Rows: ${summary?.validRows || 0}\n`;
+    reportText += `Error Rows: ${summary?.invalidRows || 0}\n`;
+    reportText += `Total Anomalies: ${summary?.anomalyCount || 0}\n\n`;
+    reportText += `--- Anomalies Details ---\n\n`;
+
+    const rowsWithAnomalies = processedRows.filter(r => r.anomalies && r.anomalies.length > 0);
+    
+    if (rowsWithAnomalies.length === 0) {
+      reportText += `No anomalies found in the processed rows.\n`;
+    } else {
+      rowsWithAnomalies.forEach(row => {
+        reportText += `Row ${row.rowNumber} (${row.original.description || 'No description'}):\n`;
+        row.anomalies.forEach(anomaly => {
+          reportText += `  - [${anomaly.severity.toUpperCase()}] ${anomaly.type}: ${anomaly.message}\n`;
+          if (anomaly.originalValue !== undefined) {
+            reportText += `    Original: ${anomaly.originalValue}\n`;
+          }
+          if (anomaly.suggestedValue !== undefined) {
+            reportText += `    Suggested/Action Taken: ${anomaly.suggestedValue}\n`;
+          }
+        });
+        reportText += `\n`;
+      });
+    }
+
+    const blob = new Blob([reportText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `import_report_${filename}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const filteredRows = filter === 'all'
     ? processedRows
     : processedRows.filter(r => r.status === filter);
@@ -334,7 +373,12 @@ export default function ImportCSV() {
             <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-white font-semibold">Analysis Report — {filename}</h2>
-                <span className="text-gray-500 text-sm">{summary.totalRows} rows analyzed</span>
+                <div className="flex items-center gap-4">
+                  <button onClick={downloadReport} className="flex items-center gap-1.5 text-violet-400 hover:text-violet-300 text-sm font-medium transition-colors">
+                    <Download className="w-4 h-4" /> Download Report
+                  </button>
+                  <span className="text-gray-500 text-sm">{summary.totalRows} rows analyzed</span>
+                </div>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                 <div className="bg-emerald-900/20 rounded-xl p-3 text-center">
