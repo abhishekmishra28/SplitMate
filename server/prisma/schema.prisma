@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SplitType {
+  equal
+  exact
+  percentage
+  share
+  custom
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  groupsCreated       Group[]      @relation("GroupCreator")
+  memberships         Membership[]
+  expensesPaid        Expense[]    @relation("ExpensePayer")
+  expensesCreated     Expense[]    @relation("ExpenseCreator")
+  settlementsSent     Settlement[] @relation("SettlementSender")
+  settlementsReceived Settlement[] @relation("SettlementReceiver")
+  activities          Activity[]
+
+  // Phase 14 Addition
+  importReports ImportReport[]
+}
+
+model Group {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  currency    String   @default("INR")
+  createdById String
+  createdAt   DateTime @default(now())
+
+  creator     User         @relation("GroupCreator", fields: [createdById], references: [id])
+  memberships Membership[]
+  expenses    Expense[]
+  settlements Settlement[]
+  activities  Activity[]
+
+  // Phase 14 Addition
+  importReports ImportReport[]
+}
+
+model Membership {
+  id        String    @id @default(uuid())
+  groupId   String
+  userId    String?
+  joinedAt  DateTime  @default(now())
+  leftAt    DateTime?
+  isGuest   Boolean   @default(false)
+  guestName String?
+
+  group Group @relation(fields: [groupId], references: [id])
+  user  User? @relation(fields: [userId], references: [id])
+
+  @@unique([groupId, userId])
+}
+
+model Expense {
+  id           String    @id @default(uuid())
+  groupId      String
+  description  String
+  paidById     String
+  amount       Float
+  currency     String    @default("INR")
+  amountInr    Float
+  exchangeRate Float     @default(1)
+  splitType    SplitType
+  expenseDate  DateTime
+  notes        String?
+  isRefund     Boolean   @default(false)
+  isSettlement Boolean   @default(false)
+  createdById  String
+  createdAt    DateTime  @default(now())
+
+  group     Group          @relation(fields: [groupId], references: [id])
+  paidBy    User           @relation("ExpensePayer", fields: [paidById], references: [id])
+  createdBy User           @relation("ExpenseCreator", fields: [createdById], references: [id])
+  splits    ExpenseSplit[]
+}
+
+model ExpenseSplit {
+  id         String  @id @default(uuid())
+  expenseId  String
+  userId     String?
+  guestName  String?
+  amountOwed Float
+  percentage Float?
+  share      Float?
+
+  expense Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+}
+
+model Settlement {
+  id         String   @id @default(uuid())
+  groupId    String
+  fromUserId String
+  toUserId   String
+  amount     Float
+  notes      String?
+  settledAt  DateTime
+  createdAt  DateTime @default(now())
+
+  group    Group @relation(fields: [groupId], references: [id])
+  fromUser User  @relation("SettlementSender", fields: [fromUserId], references: [id])
+  toUser   User  @relation("SettlementReceiver", fields: [toUserId], references: [id])
+}
+
+model Activity {
+  id          String   @id @default(uuid())
+  groupId     String
+  userId      String?
+  type        String
+  title       String
+  description String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  user  User? @relation(fields: [userId], references: [id])
+
+  @@index([groupId])
+  @@index([createdAt])
+}
+
+// Phase 14 Addition: Import Engine
+model ImportReport {
+  id           String    @id @default(uuid())
+  groupId      String
+  importedById String
+  filename     String
+  status       String
+  totalRows    Int
+  importedRows Int       @default(0)
+  skippedRows  Int       @default(0)
+  report       Json
+  createdAt    DateTime  @default(now())
+  completedAt  DateTime?
+
+  group      Group @relation(fields: [groupId], references: [id])
+  importedBy User  @relation(fields: [importedById], references: [id])
+
+  @@index([groupId])
+}
