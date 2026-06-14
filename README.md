@@ -20,7 +20,7 @@ This project was developed using a highly collaborative Pair Programming methodo
 
 - **Frontend**: React (Vite), Tailwind CSS v3, React Router, Axios, Lucide Icons
 - **Backend**: Node.js, Express, JSON Web Tokens (JWT)
-- **Database**: PostgreSQL with Prisma ORM
+- **Database**: NeonDB
 - **Deployment**: Vercel (Frontend), Render (Backend + Database)
 
 ## Features
@@ -36,7 +36,7 @@ This project was developed using a highly collaborative Pair Programming methodo
 
 ### Prerequisites
 - Node.js (v18+)
-- PostgreSQL (running locally or via Docker, or NeonDB)
+- NeonDB
 
 ### Backend Setup
 1. `cd server`
