@@ -1,0 +1,239 @@
+Import Analysis Report: expenses_export.csv
+Total Rows: 42
+Valid Rows: 36
+Error Rows: 6
+Total Anomalies: 49
+
+--- Anomalies Details ---
+
+Row 1 (February rent):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'February rent' and amount ₹48000 already exists in the database
+    Original: February rent
+    Suggested/Action Taken: null
+
+Row 2 (Groceries BigBasket):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries BigBasket' and amount ₹2340 already exists in the database
+    Original: Groceries BigBasket
+    Suggested/Action Taken: null
+
+Row 3 (Wifi bill Feb):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Wifi bill Feb' and amount ₹1199 already exists in the database
+    Original: Wifi bill Feb
+    Suggested/Action Taken: null
+
+Row 4 (Dinner at Marina Bites):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Dinner at Marina Bites' and amount ₹3200 already exists in the database
+    Original: Dinner at Marina Bites
+    Suggested/Action Taken: null
+
+Row 5 (dinner - marina bites):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'dinner - marina bites' and amount ₹3200 already exists in the database
+    Original: dinner - marina bites
+    Suggested/Action Taken: null
+
+Row 6 (Electricity Feb):
+  - [INFO] COMMAS_IN_AMOUNT: Amount '1,200' contains commas — auto-corrected to '1200'
+    Original: 1,200
+    Suggested/Action Taken: 1200
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Electricity Feb' and amount ₹1200 already exists in the database
+    Original: Electricity Feb
+    Suggested/Action Taken: null
+
+Row 7 (Maid salary Feb):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Maid salary Feb' and amount ₹3000 already exists in the database
+    Original: Maid salary Feb
+    Suggested/Action Taken: null
+
+Row 8 (Movie night snacks):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Movie night snacks' and amount ₹640 already exists in the database
+    Original: Movie night snacks
+    Suggested/Action Taken: null
+
+Row 9 (Cylinder refill):
+  - [INFO] INVALID_PRECISION: Amount '899.995' has excessive decimal places — auto-rounded to '900'
+    Original: 899.995
+    Suggested/Action Taken: 900
+
+Row 10 (Groceries DMart):
+  - [INFO] PAYER_NAME_TYPO: 'Priya S' auto-corrected to 'Priya'
+    Original: Priya S
+    Suggested/Action Taken: Priya
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries DMart' and amount ₹1875 already exists in the database
+    Original: Groceries DMart
+    Suggested/Action Taken: null
+
+Row 11 (Aisha birthday cake):
+  - [ERROR] INVALID_SPLIT_TYPE: Invalid split type 'unequal'
+    Original: unequal
+    Suggested/Action Taken: null
+
+Row 12 (House cleaning supplies):
+  - [ERROR] MISSING_PAYER: paid_by field is required
+    Original: 
+    Suggested/Action Taken: null
+
+Row 13 (Rohan paid Aisha back):
+  - [APPROVAL] SETTLEMENT_AS_EXPENSE: This row looks like a settlement payment, not a shared expense
+    Original: Rohan paid Aisha back
+    Suggested/Action Taken: null
+  - [ERROR] MISSING_SPLIT_TYPE: split_type field is required
+    Original: 
+    Suggested/Action Taken: null
+
+Row 14 (Pizza Friday):
+  - [ERROR] INVALID_PERCENTAGE_SUM: Percentages sum to 0.00% instead of 100%
+    Original: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%
+    Suggested/Action Taken: null
+
+Row 15 (March rent):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'March rent' and amount ₹48000 already exists in the database
+    Original: March rent
+    Suggested/Action Taken: null
+
+Row 16 (Groceries BigBasket):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries BigBasket' and amount ₹2810 already exists in the database
+    Original: Groceries BigBasket
+    Suggested/Action Taken: null
+
+Row 17 (Wifi bill Mar):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Wifi bill Mar' and amount ₹1199 already exists in the database
+    Original: Wifi bill Mar
+    Suggested/Action Taken: null
+
+Row 18 (Goa flights):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Goa flights' and amount ₹32400 already exists in the database
+    Original: Goa flights
+    Suggested/Action Taken: null
+
+Row 19 (Goa villa booking):
+  - [APPROVAL] FOREIGN_CURRENCY_USD: Amount is in USD (≈ ₹51359.40 @ ₹95.11/USD) — will be converted to INR on import
+    Original: USD
+    Suggested/Action Taken: null
+
+Row 20 (Beach shack lunch):
+  - [APPROVAL] FOREIGN_CURRENCY_USD: Amount is in USD (≈ ₹7989.24 @ ₹95.11/USD) — will be converted to INR on import
+    Original: USD
+    Suggested/Action Taken: null
+
+Row 21 (Scooter rentals):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Scooter rentals' and amount ₹3600 already exists in the database
+    Original: Scooter rentals
+    Suggested/Action Taken: null
+
+Row 22 (Parasailing):
+  - [APPROVAL] FOREIGN_CURRENCY_USD: Amount is in USD (≈ ₹14266.50 @ ₹95.11/USD) — will be converted to INR on import
+    Original: USD
+    Suggested/Action Taken: null
+  - [INFO] SPLIT_MEMBER_NAME_TYPO: Split member 'Dev's friend Kabir' auto-corrected to 'Dev'
+    Original: Dev's friend Kabir
+    Suggested/Action Taken: Dev
+
+Row 23 (Dinner at Thalassa):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Dinner at Thalassa' and amount ₹2400 already exists in the database
+    Original: Dinner at Thalassa
+    Suggested/Action Taken: null
+
+Row 24 (Thalassa dinner):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Thalassa dinner' and amount ₹2450 already exists in the database
+    Original: Thalassa dinner
+    Suggested/Action Taken: null
+
+Row 25 (Parasailing refund):
+  - [APPROVAL] NEGATIVE_AMOUNT: Negative amount implies a refund
+    Original: -30
+    Suggested/Action Taken: null
+  - [APPROVAL] FOREIGN_CURRENCY_USD: Amount is in USD (≈ ₹-2853.30 @ ₹95.11/USD) — will be converted to INR on import
+    Original: USD
+    Suggested/Action Taken: null
+
+Row 26 (Airport cab):
+  - [ERROR] INVALID_DATE_FORMAT: Date 'Mar 14' is malformed (expected DD/MM/YYYY or DD-MM-YYYY)
+    Original: Mar 14
+    Suggested/Action Taken: null
+
+Row 27 (Groceries DMart):
+  - [INFO] MISSING_CURRENCY: Currency missing — defaulting to INR
+    Original: 
+    Suggested/Action Taken: INR
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries DMart' and amount ₹2105 already exists in the database
+    Original: Groceries DMart
+    Suggested/Action Taken: null
+
+Row 28 (Electricity Mar):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Electricity Mar' and amount ₹1450 already exists in the database
+    Original: Electricity Mar
+    Suggested/Action Taken: null
+
+Row 29 (Maid salary Mar):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Maid salary Mar' and amount ₹3000 already exists in the database
+    Original: Maid salary Mar
+    Suggested/Action Taken: null
+
+Row 30 (Dinner order Swiggy):
+  - [APPROVAL] ZERO_AMOUNT: Amount is zero — may be a data correction or placeholder
+    Original: 0
+    Suggested/Action Taken: null
+
+Row 31 (Weekend brunch):
+  - [ERROR] INVALID_PERCENTAGE_SUM: Percentages sum to 0.00% instead of 100%
+    Original: Aisha 30%; Rohan 30%; Priya 30%; Meera 20%
+    Suggested/Action Taken: null
+
+Row 32 (Meera farewell dinner):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Meera farewell dinner' and amount ₹4800 already exists in the database
+    Original: Meera farewell dinner
+    Suggested/Action Taken: null
+
+Row 33 (Deep cleaning service):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Deep cleaning service' and amount ₹2500 already exists in the database
+    Original: Deep cleaning service
+    Suggested/Action Taken: null
+
+Row 34 (April rent):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'April rent' and amount ₹48000 already exists in the database
+    Original: April rent
+    Suggested/Action Taken: null
+
+Row 35 (Groceries BigBasket):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries BigBasket' and amount ₹2640 already exists in the database
+    Original: Groceries BigBasket
+    Suggested/Action Taken: null
+
+Row 36 (Wifi bill Apr):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Wifi bill Apr' and amount ₹1199 already exists in the database
+    Original: Wifi bill Apr
+    Suggested/Action Taken: null
+
+Row 37 (Sam deposit share):
+  - [APPROVAL] SETTLEMENT_AS_EXPENSE: This row looks like a settlement payment, not a shared expense
+    Original: Sam deposit share
+    Suggested/Action Taken: null
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Sam deposit share' and amount ₹15000 already exists in the database
+    Original: Sam deposit share
+    Suggested/Action Taken: null
+
+Row 38 (Housewarming drinks):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Housewarming drinks' and amount ₹3100 already exists in the database
+    Original: Housewarming drinks
+    Suggested/Action Taken: null
+
+Row 39 (Electricity Apr):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Electricity Apr' and amount ₹1380 already exists in the database
+    Original: Electricity Apr
+    Suggested/Action Taken: null
+
+Row 40 (Groceries DMart):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Groceries DMart' and amount ₹1990 already exists in the database
+    Original: Groceries DMart
+    Suggested/Action Taken: null
+
+Row 41 (Furniture for common room):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Furniture for common room' and amount ₹12000 already exists in the database
+    Original: Furniture for common room
+    Suggested/Action Taken: null
+
+Row 42 (Maid salary Apr):
+  - [APPROVAL] DUPLICATE_EXPENSE_DB: An expense with description 'Maid salary Apr' and amount ₹3000 already exists in the database
+    Original: Maid salary Apr
+    Suggested/Action Taken: null
+
